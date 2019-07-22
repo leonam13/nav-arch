@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/nav_graph"
+	app:startDestination="@id/launcherFragment">
+
+	<include app:graph="@navigation/book_nav_graph" />
+
+	<action
+		android:id="@+id/actionShowAuthor"
+		app:destination="@+id/authorDetails" />
+
+	<fragment
+		android:id="@+id/bookSearchFragment"
+		android:name="com.raywenderlich.android.bookmanstreasure.ui.booksearch.BookSearchFragment"
+		android:label="Book Search Fragment"
+		tools:layout="@layout/fragment_book_search">
+		<action
+			android:id="@+id/actionBookDetails"
+			app:destination="@id/workDetailsFragment"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right" />
+	</fragment>
+
+	<fragment
+		android:id="@+id/workDetailsFragment"
+		android:name="com.raywenderlich.android.bookmanstreasure.ui.workdetails.WorkDetailsFragment"
+		android:label="work_details_fragment"
+		tools:layout="@layout/fragment_work_details">
+		<action
+			android:id="@+id/actionShowEdition"
+			app:destination="@id/bookDetailsFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/favoritesFragment"
+		android:name="com.raywenderlich.android.bookmanstreasure.ui.favorites.FavoritesFragment"
+		android:label="FavoritesFragment">
+		<deepLink app:uri="bookmanstreasure://home/favorites" />
+		<action
+			android:id="@+id/actionBookDetails"
+			app:destination="@id/workDetailsFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/bookDetailsFragment"
+		android:name="com.raywenderlich.android.bookmanstreasure.ui.bookdetails.BookDetailsFragment"
+		android:label="BookDetailsFragment" />
+
+	<author android:id="@+id/authorDetails" />
+
+	<fragment
+		android:id="@+id/launcherFragment"
+		android:name="com.raywenderlich.android.bookmanstreasure.ui.launcher.LauncherFragment"
+		android:label="Blank"
+		tools:layout="@layout/fragment_book_details">
+		<action
+			android:id="@+id/actionBookSearch"
+			app:destination="@id/bookSearchFragment" />
+		<action
+			android:id="@+id/actionFavorites"
+			app:destination="@id/favoritesFragment" />
+	</fragment>
+
+</navigation>
